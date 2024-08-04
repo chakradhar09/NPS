@@ -1,0 +1,40 @@
+Hub:A Central Connection Point
+  A hub is a central device that connects multiple computers on a single network. It's essentially a multi-port repeater. Any data packet received by the hub on any port is sent out to all other ports.
+  
+  Key Characteristics of a Hub:
+    Simple: Easy to install and configure.
+    Cheap: Generally less expensive than switches.
+    Low performance: Due to broadcasting data to all connected devices, network performance can degrade as the number of devices increases.
+    Limited functionality: Offers basic connectivity without advanced features like collision detection or data filtering.
+
+Router:Router: The Network Traffic Director
+  A router is a networking device that forwards data packets between computer networks. It operates at the network layer of the OSI model, making decisions about the best path for data to travel.   
+  
+  Key Functions of a Router:
+    Packet Forwarding: Directs data packets to their intended destinations based on their IP addresses.
+    Network Addressing: Manages IP addresses within a network.
+    Routing Protocols: Uses algorithms to determine the best path for data transmission.
+    Network Segmentation: Divides a large network into smaller subnets for better management and security.
+  Types of Routers:
+    Home Routers: Connects home networks to the internet and typically includes a Wi-Fi access point.
+    Enterprise Routers: Handles larger networks and complex routing scenarios.
+    Core Routers: High-performance routers used in the backbone of large networks.
+  How a Router Works:
+    A device sends data packets to the router.
+    The router examines the packet's destination IP address.
+    Using routing tables, the router determines the best path to send the packet.
+    The router forwards the packet to the next network hop.
+
+Switch: The Network Traffic Cop
+  A switch is a networking device that connects multiple devices on a single network. Unlike a hub, it intelligently forwards data packets only to the intended recipient, improving network performance and     efficiency.
+  
+  Key Characteristics of a Switch:
+    Improved performance: By directing data only to the intended device, it reduces network congestion.
+    MAC address learning: Switches learn the MAC addresses of connected devices and use this information to forward packets.
+    Segmentation: Can divide a network into smaller segments, improving security and performance.
+    Types: Managed switches offer advanced configuration options, while unmanaged switches have limited features.
+  How a Switch Works:
+    A device sends a data packet to the switch.
+    The switch examines the packet's destination MAC address.
+    If the switch knows the MAC address, it forwards the packet directly to the device.
+    If the switch doesn't know the MAC address, it broadcasts the packet to all ports and learns the MAC address.
