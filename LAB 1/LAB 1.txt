@@ -1,0 +1,26 @@
+												Lab 1
+
+
+Components:
+	1) 2960 Switch
+	2) 2 PCs
+
+
+Procedure:
+	Connected PC0 to switch via fa0/1 (copper straight through) 
+	Connected PC1 to switch via fa0/2 (copper straight through)
+	
+	Assigned 192.34.23.1 to PC0
+	Assigned 192.34.23.2 to PC1
+
+Description: 
+
+											Basic Network Setup
+
+A straightforward network has been established using a Cisco Catalyst 2960 switch and two PCs. The PCs are physically connected to the switch via copper straight-through cables on ports fa0/1 and fa0/2, respectively. 
+
+To enable communication, each PC has been assigned a unique IP address: 192.34.23.1 for PC0 and 192.34.23.2 for PC1. Sharing the same network portion (192.34.23) allows direct communication between the two PCs without the need for a router. 
+
+Result:
+	
+	This configuration forms a star topology, centered around the switch. While simple and effective for small-scale networks, it has limitations. Primarily, the switch is a single point of failure, meaning if it malfunctions, the entire network is disrupted. Additionally, scalability is restricted as the network grows. To address these issues, more complex network designs incorporating redundancy and multiple switches would be necessary. 
