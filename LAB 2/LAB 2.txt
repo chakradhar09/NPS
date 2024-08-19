@@ -1,0 +1,128 @@
+												LAB 2
+
+Aim:
+	Execute the following networking commands like:
+		I) ipconfig
+		ii) tracert
+		iii) telnet
+		iv) netsh
+		v) ping
+		vi) nslookup
+		vii) netstat
+
+Components: 
+	I) 2901 router
+	ii) 2960 switch (2)
+	iii) PCs (2)
+	iv) Server
+
+Procedure:
+	1.Add Devices:
+	Routers and Switches: Drag and drop a router and a switch from the device list onto the workspace.
+	PCs: Drag and drop two PCs onto the workspace.
+
+	2.Connect Devices:
+	Use the Connection tool to connect the devices:
+	Connect one PC to the switch using a copper straight-through cable.
+	Connect the switch to the router using another copper straight-through cable.
+	Connect the second PC to the switch using a copper straight-through cable.
+	
+	Configure Devices
+		1.Configure the Router:
+			Click on the router.
+			Go to the Config tab.
+			Assign IP addresses to the router interfaces.
+		Example:
+			Interface G0/0: IP address 192.168.1.1, Subnet Mask 255.255.255.0
+			Interface G0/1: IP address 192.168.2.1, Subnet Mask 255.255.255.0
+		2.Configure the PCs:
+			Click on each PC.
+			Go to the Desktop tab and then IP Configuration.
+			Assign IP addresses to each PC.
+		Example:
+			PC0: IP address 192.168.1.2, Subnet Mask 255.255.255.0, Default Gateway 192.168.1.1
+			PC1: IP address 192.168.2.2, Subnet Mask 255.255.255.0, Default Gateway 192.168.2.1
+
+		Execute Networking Commands
+			1.Open Command Prompt on a PC0:
+				Click on a PC0.
+				Go to the Desktop tab and open the Command Prompt.
+
+				1.ipconfig:
+					This command displays all current TCP/IP network configuration values and refreshes DHCP and DNS settings.
+				2.tracert:
+					This command traces the path taken to a destination by sending ICMP Echo Request messages.
+				3.telnet:
+					This command is used for interactive communication with another host using the Telnet protocol.
+					telnet <destination IP> <port>
+
+		Configure the Router
+			1.Assign IP Address:
+				Click on the router.
+				Go to the Config tab.
+				Select the interface connected to the switch (e.g., G0/0).
+				Assign IP address: 192.168.1.1, Subnet Mask: 255.255.255.0
+					Router>enable
+					Router>configure terminal
+					Router(config-if)#line vty 0 4
+					Router(config-line)#password cisco
+					Router(config-line)#login
+					Router(config-line)#exit
+					Router(config)#end
+					Router#
+					%SYS-5-CONFIG_I: Configured from console by console
+
+					Router#write memory
+					Building configuration...
+					[OK]
+
+		Telnet from PC to Router
+			1.Open Command Prompt:
+				On the PC0, go to the Desktop tab and open the Command Prompt.
+			2.Execute Telnet Command:
+				telnet <destination IP> <port>
+
+
+		Telnet Security: Telnet is an unencrypted protocol and is not secure. For real-world applications, consider using SSH for secure remote connections.
+ 		Enabling Telnet on a Real Router: If using real equipment, make sure Telnet is enabled and the device is configured to accept Telnet connections.
+			4.Router configuration and Brief Ip Interface
+				This command is a scripting utility that allows you to display or modify the network configuration of a computer.
+
+			5.Ping 192.168.2.2 
+			ICMP Echo
+
+			6.nslookup
+				This command queries the DNS to obtain domain name or IP address mapping.
+					To use the nslookup command to resolve a domain name to an IP address in Cisco Packet Tracer, you'll need to ensure that the DNS server is properly 						configured in your network topology
+
+				1.Add one server (to act as a DNS server).
+				2.Connect both PCs and the server to the switch using copper straight-through cables.
+
+	Configure the DNS Server
+		1.Assign IP Address:
+			Click on the server.
+			Go to the Config tab and select the FastEthernet0 interface.
+			Assign IP address: 192.168.1.3, Subnet Mask: 255.255.255.0, Default Gateway: 192.168.1.1.
+		Configure DNS Service:
+			Go to the Services tab on the server.
+			Select DNS and turn the service On.
+			Add an entry for www.google.com with an IP address (e.g., 8.8.8.8).
+
+
+	Use the nslookup Command
+		1.Open Command Prompt on PC0:
+			Go to the Desktop tab on PC0.
+			Open the Command Prompt.
+		2.Execute the nslookup Command:
+			nslookup www.google.com
+
+	This indicates that the PC successfully queried the DNS server and resolved the domain name www.google.com to the IP address 8.8.8.8.
+	DNS Server Configuration: Ensure that the DNS server is correctly configured and running.
+	DNS Entries: The DNS entry for www.google.com should be added to the DNS server with an IP address.
+	Network Configuration: Ensure that all devices are correctly connected and configured with appropriate IP addresses, subnet masks, and default gateways.
+
+
+	7.Netstat
+		This command displays network connections for the Transmission Control Protocol (TCP), routing tables, and a number of network interface and network protocol statistics.
+		The netstat command is used to display network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
+
