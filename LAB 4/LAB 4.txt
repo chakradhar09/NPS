@@ -1,0 +1,133 @@
+												Lab 4
+
+Aim:
+	Constructing different VLANs (Virtual Local Area Networks) and configuring trunking using Cisco Packet Tracer
+
+Components:
+
+	i) 2960 Switch (2) 
+	ii) PCs (8)
+
+Procedure:
+	Configuration Steps
+		Step 1: Setting Up the Network Topology
+			1.Add Devices in Packet Tracer:
+				Drag and drop two switches (S1 and S2).
+				Add PCs and connect them to the switches using copper straight-through cables.
+				Connect fa0/24 of S1 to fa0/24 of S2 using a cross-over cable.
+	
+	Switch 0 Configuration
+		Switch>enable
+		Switch#configure terminal
+		Enter configuration commands, one per line. End with CNTL/Z.
+
+		Create VLAN 10
+			Switch(config)#vlan 10
+			Switch(config-vlan)#name VLAN10
+			Switch(config-vlan)#exit
+
+		Create VLAN 20
+			Switch(config)#vlan 20
+			Switch(config-vlan)#name VLAN20
+			Switch(config-vlan)#exit
+
+		Assign Ports to VLAN 10:
+			Switch(config)#interface range fa0/1 - 4
+			Switch(config-if-range)#switchport mode access
+			Switch(config-if-range)#switchport access vlan 10
+			Switch(config-if-range)#exit
+
+		Assign Ports to VLAN 20:
+			Switch(config)#interface range fa0/5 - 8
+			Switch(config-if-range)#switchport mode access
+			Switch(config-if-range)#switchport access vlan 20
+			Switch(config-if-range)#exit
+
+		Set a Port to Trunk Mode- S0
+			Switch(config)#interface fa0/24
+			Switch(config-if)#switchport mode trunk
+			Switch(config-if)#exit
+			Switch(config)# 
+
+	Switch 1 Configuration 
+		Switch>enable
+		Switch#configure terminal
+		Enter configuration commands, one per line. End with CNTL/Z.
+
+		Create VLAN 10
+			Switch(config)#vlan 10
+			Switch(config-vlan)#name VLAN10
+			Switch(config-vlan)#exit
+
+		Create VLAN 20
+			Switch(config)#vlan 20
+			Switch(config-vlan)#name VLAN20
+			Switch(config-vlan)#exit
+
+		Assign Ports to VLAN 10:
+			Switch(config)#interface range fa0/1-4
+			Switch(config-if-range)#switchport mode access
+			Switch(config-if-range)#switchport access vlan 10
+			Switch(config-if-range)#exit
+
+		Assign Ports to VLAN 20:
+			Switch(config)#interface range fa0/5-8
+			Switch(config-if-range)#switchport mode access
+			Switch(config-if-range)#switchport access vlan 20
+			Switch(config-if-range)#exit
+
+		Configuring Trunking on Switch 1
+			Switch(config)#interface fa0/24
+			Switch(config-if)#switchport mode trunk
+			Switch(config-if)#exit
+			Switch(config)#
+			Switch#
+
+	Verify Connectivity
+		1.Check Trunk Ports:
+			Switch# show interfaces trunk
+		2.Check VLANs:
+			Switch# show vlan brief
+
+
+	Configure End Devices
+	1.Assign IP Addresses to PCs:
+			PC1: 192.168.10.1/24
+			PC2: 192.168.10.2/24
+			PC3: 192.168.20.1/24
+			PC4: 192.168.20.2/24
+			PC5: 192.168.10.3/24
+			PC6: 192.168.10.4/24
+			PC7: 192.168.20.3/24
+			PC8: 192.168.20.4/24
+
+	Test Connectivity within VLANs:
+		Ping from PC1 to PC2 (both in VLAN 10)
+		Ping from PC3 to PC4 (both in VLAN 20)
+		Ping from PC5 to PC1 (both in VLAN 10, across switches)
+
+		Ping from PC7 to PC3 (both in VLAN 20, across switches)
+	Verify that PCs in different VLANs cannot communicate without a router:
+		Ping from PC1 to PC3 should fail (VLAN 10 to VLAN 20)
+		Ping from PC7 to PC1
+Results:
+	1. VLAN Creation and Assignment:
+
+		Two VLANs (VLAN10 and VLAN20) were created on both switches.
+		Ports fa0/1-4 on both switches were assigned to VLAN10.
+		Ports fa0/5-8 on both switches were assigned to VLAN20.
+	2. Trunk Port Configuration:
+
+		The interface fa0/24 on both switches was configured as a trunk port using the switchport mode trunk command.
+	3. Verification:
+
+		Trunk Port: The show interfaces trunk command confirmed that the trunk port was configured correctly.
+		VLANs: The show vlan brief command displayed the created VLANs and their assigned ports.
+		Connectivity:
+			Within VLANs: PCs in the same VLAN (e.g., PC1 and PC2 in VLAN10) could successfully ping each other.
+			Across VLANs: PCs in different VLANs (e.g., PC1 and PC3) could not ping each other directly without a router. This demonstrates the isolation provided by VLANs.
+	4. End Device Configuration:
+
+		The PCs were assigned IP addresses within their respective VLANs.
+		Successful ping tests were conducted between PCs in the same VLAN, both within the same switch and across switches.
+	

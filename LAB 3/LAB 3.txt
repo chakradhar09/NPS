@@ -1,0 +1,57 @@
+												LAB 3
+
+Aim:
+	To configure switch and check whether any two end devices can communicate within the network
+
+
+Components:
+	i) 2960 Switch
+	ii) Pcs (2)
+
+Procedure:
+	Step1: Setting up the Network Topology
+		1.Open Cisco Packet Tracer.
+		2.Add devices
+			Drag and drop a Cisco switch onto the workspace
+			Drag and drop two or more PCs onto the workspace
+		3.Connect devices:
+			use the Connections option to select the Copper Straight-Through cable
+			Connect each PC to the Switch using the PastEthernet ports
+
+	Step 2: Configuring the Switch
+		1.Open the CLI (Command-Line Interface) of the switch:
+			Click on the switch and go to the CLI tab.
+																									Router Configuration process:
+			1.Enter privileged EXEC mode:		
+				Switch> enable 
+				Switch#
+			2.Enter global configuration mode:
+				Switch# configure terminal 
+				Switch(config)#
+			3.Configure the switch hostname (optional):
+				Switch(config)# hostname s1
+				S2(config)#
+			4.Configure VLAN 1 (default VLAN) interface with an IP address
+				S1(config)# interface vlan 1 
+				S1(config-if)# ip address 192.168.1.1 255.255.255.0 
+				S1(config-if)# no shutdown 
+				S1(config-if)# exit
+				S1(config)#
+			5.Save the configuration:
+				S1(config)# exit 
+				S1# write memory
+
+	Step 3: Configuring PCs
+		1.Assign IP addresses to PCs:
+			Click on each PC and go to the Desktop tab.
+			Open the IP Configuration and assign an IP address within the same subnet as the switch's VLAN 1 interface. For example:
+				PC0: IP Address: 192.168.1.2, Subnet Mask: 255.255.255.0
+				PC1: IP Address: 192.168.1.3, Subnet Mask: 255.255.255.0
+	
+	Step 4: Testing Connectivity
+		1.Ping between PCs:
+			Open the Command Prompt on one of the PCs (e.g., PC0).
+			Use the ping command to check connectivity to the other PC (e.g., ping 192.168.1.3).
+
+Result:
+	If the configuration is correct, you should see replies from PC1 indicating successful communication between the two PCs. If not, check your configurations for any errors.
