@@ -1,0 +1,104 @@
+					LAB-5
+							                             
+Aim:
+	Configuration of Encapsulation dot 1Q using cisco packet tracer
+
+Components:
+
+	i) 3560-24Ps Switch (2) 
+	ii) PCs (4)
+
+Procedure:
+	Configuration Steps
+		Step 1: Setting Up the Network Topology
+			1.Add Devices in Packet Tracer:
+				Drag and drop two switches (S1 and S2).
+				Add PCs and connect them to the switches using copper straight-through cables.
+				Connect fa0/24 of S1 to fa0/24 of S2 using a cross-over cable.
+	
+	Switch 0 Configuration
+		Switch>enable
+                Switch#configure
+              %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/24, changed      state to down 
+                Configuring from terminal, memory, or network [terminal]? terminal
+                Enter configuration commands, one per line.  End with CNTL/Z.
+                Switch(config)#vlan 10
+                Switch(config-vlan)#name VLAN10
+                Switch(config-vlan)#exit
+           	Switch(config)#vlan 20
+		Switch(config-vlan)#name VLAN20
+		Switch(config-vlan)#exit	
+		Switch(config)#interface range fa0/1-2
+		Switch(config-if-range)#switchport mode access
+		Switch(config-if-range)#switchport access vlan 10
+		Switch(config-if-range)#exit
+		Switch(config)#interface range fa0/3-4
+		Switch(config-if-range)#switchport mode access
+		Switch(config-if-range)#switchport access vlan 20
+		Switch(config-if-range)#exit
+		Switch(config)#interface fa0/24
+		Switch(config-if)#switchport trunk encapsulation dot1q
+		Switch(config-if)#switchport mode trunk 
+		Switch(config-if)#exit	
+Switch 1 Configuration 
+		Switch>enable
+		Switch#configure terminal
+		Enter configuration commands, one per line.  End with CNTL/Z.
+		Switch(config)#vlan 10
+		Switch(config-vlan)#name VLAN10
+		Switch(config-vlan)#exit
+		Switch(config)#vlan 20
+		Switch(config-vlan)#name VLAN20
+		Switch(config-vlan)#exit
+		Switch(config)#interface range fa0/1-2
+		Switch(config-if-range)#switchport mode access
+		Switch(config-if-range)#switchport access vlan 10
+		Switch(config-if-range)#exit
+		Switch(config)#interface range fa0/3-4
+		Switch(config-if-range)#switchport access vlan 20
+		Switch(config-if-range)#exit
+		Switch(config)#interface fa0/24
+		Switch(config-if)#switchport trunk encapsulation dot1q
+		Switch(config-if)#switchport mode trunk
+		Switch(config-if)#exit
+		Switch(config)#exit
+Verify Connectivity
+		1.Check Trunk Ports:
+			Switch# show interfaces trunk
+		2.Check VLANs:
+			Switch# show vlan brief
+
+
+Configure End Devices
+	1.Assign IP Addresses to PCs:
+			PC0: 192.168.10.1
+			PC1: 192.168.20.1
+			PC2: 192.168.10.2
+			PC3: 192.168.20.2
+			
+
+	Test Connectivity within VLANs:
+		Ping from PC0 to PC1 
+		Ping from PC1 to PC2 
+		Ping from PC2 to PC3 
+
+Results:
+	1. VLAN Creation and Assignment:
+
+		Two VLANs (VLAN10 and VLAN20) were created on both switches.
+		Ports fa0/1-2 on both switches were assigned to VLAN10.
+		Ports fa0/3-4 on both switches were assigned to VLAN20.
+	2. Trunk Port Configuration:
+
+		The interface fa0/24 on both switches was configured as a trunk port using the switchport trunk encapsulation dot1q
+ command.
+	3. Verification:
+
+		Trunk Port: The show interfaces trunk command confirmed that the trunk port was configured correctly.
+		VLANs: The show vlan brief command displayed the created VLANs and their assigned ports.
+		
+	4. End Device Configuration:
+
+		The PCs were assigned IP addresses within their respective VLANs.
+		Successful ping tests were conducted between PCs in the same VLAN, both within the same switch and across switches.
+	
