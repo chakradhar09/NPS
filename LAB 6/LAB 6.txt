@@ -1,0 +1,40 @@
+								Lab 6
+
+Aim:
+To configure a network using a server, router, and smart devices in Cisco Packet Tracer, allowing home automation control via a PC.
+
+Components:
+i) Router (e.g., 1941) – To act as the main gateway for communication between devices.
+ii) Server – To act as the home gateway for managing and controlling smart devices.
+iii) Smart Home Devices – Devices like lights, fans, and alarms.
+iv) PC – Used for configuring the network and controlling the smart home devices.
+v) Wireless Router (optional) – If using wireless smart devices, a wireless router is added to enable connectivity.
+
+Network Design:
+The Router connects to a Server that controls the smart devices. The smart devices, including home appliances like lights, fans, and alarms, are connected either through wired or wireless connections. A PC is used to configure the system and access the server for control of the smart appliances.
+
+Step-by-Step Configuration Process:
+Step 1: Network Topology Setup
+Open Cisco Packet Tracer.
+Add the router, server, PC, and smart home appliances.
+Use Copper Straight-Through cables to connect the router to the server and PC. For wired smart devices, connect them to the router. Wireless smart devices can connect to the network automatically via a wireless router.
+Step 2: Configuring the Router
+Access the CLI of the router and configure the router’s interface to connect to the network.
+Assign IP addresses to the router interface (e.g., 192.168.10.1).
+Optionally, configure DHCP to automatically assign IP addresses to the connected devices.
+Step 3: Setting Up the Server
+Assign an IP address to the server (e.g., 192.168.10.2).
+Enable Home Gateway services on the server to manage smart devices.
+Configure the smart devices to communicate with the server using the server's IP address as the IoT gateway.
+Step 4: Configuring Smart Devices
+Assign IP addresses (static or via DHCP) to the smart devices.
+Link each smart device to the server by setting the server’s IP address as their IoT gateway.
+Ensure all devices are registered with the server to enable remote control.
+Step 5: Configuring the PC
+Use the PC to access the server's web interface or IoT control panel.
+Through this interface, the PC can control the status of the smart devices, such as turning lights on/off or controlling the fan's speed.
+Step 6: Testing and Controlling Devices
+Test the network by pinging the server and devices to ensure communication.
+From the PC, use the server’s IoT control interface to toggle and manage smart devices.
+Outcome:
+The setup should allow the PC to remotely control home appliances through the server.
