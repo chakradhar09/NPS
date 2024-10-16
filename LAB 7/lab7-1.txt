@@ -1,0 +1,58 @@
+Aim: To configure ARP (Address Resolution Protocol) and Static Routing on a Cisco network switch and verify connectivity between end devices.
+
+Components:
+
+Cisco 2960 Switch
+PCs (2)
+Procedure:
+
+Step 1: Setting up the Network Topology
+Open Cisco Packet Tracer.
+Add Devices:
+Drag and drop a Cisco switch onto the workspace.
+Drag and drop two or more PCs onto the workspace.
+Connect Devices:
+Use the Connections option to select the Copper Straight-Through cable.
+Connect each PC to the Switch using FastEthernet ports.
+Step 2: Configuring ARP
+Open the CLI (Command-Line Interface) of the switch:
+Click on the switch and go to the CLI tab.
+Enter privileged EXEC mode:
+Switch> enable
+Switch#
+Enter global configuration mode:
+Switch# configure terminal
+Switch(config)#
+Configure the IP address of the VLAN 1 interface:
+Switch(config)# interface vlan 1
+Switch(config-if)# ip address 192.168.1.1 255.255.255.0
+Switch(config-if)# no shutdown
+Switch(config-if)# exit
+View ARP entries:
+To check ARP entries after communication:
+Switch# show arp
+Step 3: Configuring Static Routing
+Enter global configuration mode:
+Switch# configure terminal
+Switch(config)#
+Add static routes for each network:
+Example for a static route to another network:
+Switch(config)# ip route 192.168.2.0 255.255.255.0 192.168.1.2
+Switch(config)# ip route 192.168.3.0 255.255.255.0 192.168.1.3
+Adjust IP addresses and networks as per your topology.
+Save the configuration:
+Switch(config)# exit
+Switch# write memory
+Step 4: Configuring PCs
+Assign IP addresses to PCs:
+Click on each PC and go to the Desktop tab.
+Open the IP Configuration and assign an IP address within the same subnet as the switch's VLAN 1 interface. For example:
+PC0: IP Address: 192.168.1.2, Subnet Mask: 255.255.255.0
+PC1: IP Address: 192.168.1.3, Subnet Mask: 255.255.255.0
+Step 5: Testing Connectivity
+Ping between PCs:
+Open the Command Prompt on one of the PCs (e.g., PC0).
+Use the ping command to check connectivity to the other PC (e.g., ping 192.168.1.3).
+Verify ARP Table:
+Open the CLI of the switch and use the command show arp to check the ARP entries for connected devices.
+Result: If the configuration is correct, successful communication between the two PCs should be established via ARP and static routing. If communication fails, review the configurations for any errors.

@@ -1,0 +1,80 @@
+Aim: To configure static routing between two networks using a Cisco router and verify connectivity between end devices.
+
+Components:
+
+Cisco 2811 Router
+Cisco 2960 Switches (2)
+PCs (2)
+Procedure:
+
+Step 1: Setting up the Network Topology
+Open Cisco Packet Tracer.
+Add Devices:
+Drag and drop a Cisco router and two switches onto the workspace.
+Add two PCs and place them on separate networks, connected to different switches.
+Connect Devices:
+Use the Connections option to select Copper Straight-Through cables.
+Connect each PC to its respective switch using FastEthernet ports.
+Use a Copper Cross-Over cable to connect each switch to the router’s FastEthernet interface.
+Step 2: Configuring the Router
+Open the CLI (Command-Line Interface) of the router:
+Click on the router and go to the CLI tab.
+Enter privileged EXEC mode:
+Router> enable
+Router#
+Enter global configuration mode:
+Router# configure terminal
+Router(config)#
+Configure the IP addresses for router interfaces:
+For the first FastEthernet interface:
+Router(config)# interface fastEthernet 0/0
+Router(config-if)# ip address 192.168.1.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+For the second FastEthernet interface:
+Router(config)# interface fastEthernet 0/1
+Router(config-if)# ip address 192.168.2.1 255.255.255.0
+Router(config-if)# no shutdown
+Router(config-if)# exit
+Step 3: Configuring Static Routes
+Enter global configuration mode:
+Router(config)#
+Add static routes for each network:
+To route traffic from network 192.168.1.0 to network 192.168.2.0:
+Router(config)# ip route 192.168.2.0 255.255.255.0 fastEthernet 0/1
+To route traffic from network 192.168.2.0 to network 192.168.1.0:
+Router(config)# ip route 192.168.1.0 255.255.255.0 fastEthernet 0/0
+Save the configuration:
+Router(config)# exit
+Router# write memory
+Step 4: Configuring the Switches
+Open the CLI of each switch and configure IP addresses for VLAN 1:
+Switch> enable
+Switch# configure terminal
+Switch(config)# interface vlan 1
+For Switch 1 (connected to network 192.168.1.0):
+Switch(config-if)# ip address 192.168.1.2 255.255.255.0
+Switch(config-if)# no shutdown
+Switch(config-if)# exit
+For Switch 2 (connected to network 192.168.2.0):
+Switch(config-if)# ip address 192.168.2.2 255.255.255.0
+Switch(config-if)# no shutdown
+Switch(config-if)# exit
+Save the configuration:
+Switch# write memory
+Step 5: Configuring the PCs
+Assign IP addresses to the PCs:
+Click on each PC and go to the Desktop tab.
+Open the IP Configuration and assign an IP address within the same subnet as the respective switch:
+PC0 (Network 192.168.1.0):
+IP Address: 192.168.1.3, Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.1.1
+PC1 (Network 192.168.2.0):
+IP Address: 192.168.2.3, Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.2.1
+Step 6: Testing Connectivity
+Ping between PCs:
+Open the Command Prompt on PC0 and use the ping command to check connectivity to PC1 (e.g., ping 192.168.2.3).
+Open the Command Prompt on PC1 and ping PC0 (e.g., ping 192.168.1.3).
+
+Result: If the configuration is correct, successful communication between the two PCs should occur via static routing. If there is no connectivity, recheck the IP addresses, routing configuration, and network connections for errors.
