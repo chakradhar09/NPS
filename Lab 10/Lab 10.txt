@@ -1,0 +1,52 @@
+EXPERIMENT 10
+Step 1: Open Cisco Packet Tracer
+Launch Cisco Packet Tracer and create a new project or open an existing one.
+Step 2: Add a Router
+Drag and drop a router onto the workspace.
+Connect the router to other devices (PCs or switches) as needed using appropriate cables (typically copper straight-through or crossover).
+Step 3: Access the Router CLI
+Click on the router to open it.
+Go to the CLI tab to access the command-line interface.
+Step 4: Enter Global Configuration Mode
+Type the following command to enter global configuration mode:
+shell
+Copy code
+Router> enable
+Router# configure terminal
+Step 5: Configure the Access Control List (ACL)
+Create the ACL by entering the following commands:
+arduino
+
+Router(config)# access-list 10 permit host 192.168.10.10
+Router(config)# access-list 10 permit host 192.168.10.20
+Router(config)# access-list 10 deny any
+Step 6: Apply the ACL to an Interface
+Identify the interface to which you want to apply the ACL (e.g., GigabitEthernet0/0):
+arduino
+
+Router(config)# interface gig0/0
+Router(config-if)# ip access-group 10 in
+Router(config-if)# exit
+Step 7: Save the Configuration
+Save the configuration to ensure it persists after a reboot:
+arduino
+
+Router(config)# exit
+Router# write memory
+Step 8: Verify the ACL Configuration
+Use the following command to display the access lists and verify your configuration:
+arduino
+
+Router# show access-lists
+Expected Output
+You should see output similar to the following, indicating the ACL has been applied correctly:
+
+python
+
+Standard IP access list 10
+10 permit host 192.168.10.10 (8 match(es))
+20 permit host 192.168.10.20 (8 match(es))
+30 deny any (8 match(es))
+Step 9: Test the ACL
+Connect PCs or devices to the network and try to access the router's interface or other devices based on the ACL rules.
+For example, try pinging the router's IP from the configured hosts (192.168.10.10 and 192.168.10.20) and from other hosts to verify that only the specified hosts can access the router.
